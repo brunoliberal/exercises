@@ -9,19 +9,28 @@ class Node:
 
 
 class Queue:
-    def __init__(self, value):
-        self.start = Node(value)
-        self.end = self.start
+    start = None
+    end = None
+
+    def __init__(self, value=None):
+        if value:
+            self.start = Node(value)
+            self.end = self.start
 
     def add(self, value):
         new_last = Node(value)
-        self.end.next = new_last
+        if self.is_empty():
+            self.start = new_last
+        else:
+            self.end.next = new_last
         self.end = new_last
 
     def remove(self):
         first = self.start
         if self.start:
             self.start = self.start.next
+            if not self.start:
+                self.end = None
         return first
 
     def peek(self):
@@ -40,20 +49,20 @@ class Queue:
 
 
 # Tests:
-queue = Queue(1)
-queue.add(2)
-queue.add(3)
-queue.add(4)
-print(queue)
-print(queue.peek())
-print(queue.is_empty())
-queue.remove()
-print(queue)
-queue.remove()
-print(queue)
-queue.remove()
-print(queue)
-queue.remove()
-print(queue)
-print(queue.remove())
-print(queue.is_empty())
+# queue = Queue(1)
+# queue.add(2)
+# queue.add(3)
+# queue.add(4)
+# print(queue)
+# print(queue.peek())
+# print(queue.is_empty())
+# queue.remove()
+# print(queue)
+# queue.remove()
+# print(queue)
+# queue.remove()
+# print(queue)
+# queue.remove()
+# print(queue)
+# print(queue.remove())
+# print(queue.is_empty())
